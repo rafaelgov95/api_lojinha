@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const lojinhaRoutes = require('./routes/lojinha');
+const produtoRoutes = require('./routes/produto');
 const User = require('./models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -73,7 +73,7 @@ app.post('/login', async (req, res) => {
 });
 
 
-app.use('/lojinha', lojinhaRoutes);
+app.use('/produto', produtoRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
