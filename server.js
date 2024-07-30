@@ -35,7 +35,18 @@ app.get('/', (req, res) => {
         register: '/register', data: { nome: 'string', senha: 'string' }, return: 'void'
       },
       {
-        produto: '/produto'
+        produto: '/produto', subroutes: [{
+          get: 'void'
+        }, {
+          post: { body: { nome: 'string', descricao: 'string', categoria: 'string', valor: 'float', img: 'string' } }
+        },
+        {
+          put: { param: 'id', body: { nome: 'string', descricao: 'string', categoria: 'string', valor: 'float', img: 'string' } }
+        },
+        {
+          delete: { param: 'id' }
+        }
+        ]
       }
     ]
   })
