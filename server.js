@@ -6,7 +6,7 @@ const User = require('./models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const app = express();
-const port = 3001; 
+const port = 3001;
 
 SECRET_KEY = 'senha_salt'
 
@@ -25,7 +25,20 @@ app.use(bodyParser.json());
 
 
 app.get('/', (req, res) => {
-  res.json({ message: "Bem-vindo à API Lojinha"})
+  res.json({
+    message: "Bem-vindo à API Lojinha",
+    routes: [
+      {
+        login: '/login', data: { nome: 'string', senha: 'string' }, return: 'token jwt'
+      },
+      {
+        register: '/register', data: { nome: 'string', senha: 'string' }, return: 'void'
+      },
+      {
+        produto: '/produto'
+      }
+    ]
+  })
 
 })
 
@@ -68,7 +81,7 @@ app.post('/login', async (req, res) => {
     res.json({ token });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Erro no servidor: '+err });
+    res.status(500).json({ message: 'Erro no servidor: ' + err });
   }
 });
 
